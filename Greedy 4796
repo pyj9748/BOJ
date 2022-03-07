@@ -1,0 +1,50 @@
+//
+//  main.swift
+//  CodingTest
+//
+//  Created by young june Park on 2022/03/07.
+//
+
+import Foundation
+
+var a : String
+
+var b : [Int] = []
+var c : [[Int]] = []
+repeat {
+    a = readLine()!
+    b = a.split(separator: " ").map({
+        Int($0)!
+    })
+    c.append(b)
+} while a != "0 0 0"
+c.popLast()
+
+//print(c)
+func camp(L:Int, P: Int, V:Int) -> Int{
+    var ans = 0
+    let l = L
+    let p = P
+    var v = V
+    repeat {
+        if v >= p {
+            v -= p
+            ans += l
+        }
+        else {
+            if v >= l {
+                ans += l
+                break
+            }else{
+                ans += v
+               break
+            }
+            
+        }
+    }while V > 0
+    return ans
+}
+for i in c.indices {
+    
+    print("Case \(i + 1): \(camp(L: c[i][0], P: c[i][1], V: c[i][2]))" )
+}
