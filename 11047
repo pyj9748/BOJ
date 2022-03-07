@@ -1,0 +1,40 @@
+//
+//  main.swift
+//  CodingTest
+//
+//  Created by young june Park on 2022/03/03.
+//
+
+import Foundation
+var firstString = readLine()!.split(separator: " ").map({
+    Int($0)!
+})
+var sum = firstString[1]
+var arr : [Int] = []
+var ans = 0
+for i in 0..<firstString[0] {
+    
+    let a = Int(readLine()!)!
+    arr.append(a)
+}
+arr.sort(by: {
+    $0 > $1
+})
+
+for i in arr.indices {
+    if arr[i] > sum {
+        continue
+    }else{
+        while sum >= arr[i]{
+            sum -= arr[i]
+            //print(sum, ans, arr[i])
+            ans += 1
+            if sum == 0 {
+                break
+            }
+        }
+        
+    }
+    
+}
+print(ans)
