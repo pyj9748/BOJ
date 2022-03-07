@@ -1,0 +1,47 @@
+//
+//  main.swift
+//  CodingTest
+//
+//  Created by young june Park on 2022/03/03.
+//
+
+import Foundation
+
+var firstString = readLine()!.split(separator: " ").map({
+    Int($0)!
+})
+var secondString = readLine()!.split(separator: " ").map({
+    Int($0)!
+})
+
+
+
+let N = firstString[0]
+let L = firstString[1]
+
+if L == 1 {
+    print(N)
+    exit(0)
+}
+
+secondString.sort()
+var ans = 0
+repeat {
+    if secondString.count == 0 {
+        break
+    }
+    let cnt = secondString[0] - 1 + L
+   // print(cnt)
+    secondString = secondString.filter({
+        $0 > cnt
+    })
+   // print(secondString)
+    ans += 1
+}while secondString.count > 1
+if secondString.count == 1 {
+    print(ans+1)
+
+}
+else{
+    print(ans)
+}
