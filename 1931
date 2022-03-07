@@ -1,0 +1,37 @@
+//
+//  main.swift
+//  CodingTest
+//
+//  Created by young june Park on 2022/03/03.
+//
+
+import Foundation
+
+let count = Int(readLine()!)!
+var arr = [[Int]]()
+for i in 0..<count {
+    
+    arr.append(readLine()!.split(separator: " ").map({
+        Int($0)!
+    }))
+}
+ arr.sort(by : {
+    $0[1] < $1[1]
+})
+var ans = 0
+var now = 0
+var idx = 0
+while  idx < arr.count {
+    if arr.count < 1 {
+        break
+    }
+    if arr[idx][0] >= now {
+        ans += 1
+       
+        now = arr[idx][1]
+       // print (now,  idx , ans)
+        arr.remove(at: 0)
+    }
+    idx += 1
+}
+print(ans)
