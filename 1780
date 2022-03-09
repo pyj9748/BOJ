@@ -46,4 +46,4 @@ func divide(row : Int , col : Int , num:Int){
 }
 divide(row: 0, col: 0, num: input1)
 print ("\(result[0])\n\(result[1])\n\(result[2])")
-
+//
