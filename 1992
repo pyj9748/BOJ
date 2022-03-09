@@ -1,0 +1,57 @@
+//
+//  main.swift
+//  CodingTest
+//
+//  Created by young june Park on 2022/03/03.
+//
+ 
+import Foundation
+
+var arr1 : [String] = []
+var result = ""
+var input1 = Int(readLine()!)!
+for i in 0..<input1 {
+    arr1.append(readLine()!)
+}
+
+var arr : [[Character]] = []
+for i in 0..<input1 {
+    var arr2 = [Character]()
+    for j in arr1[i]{
+        arr2.append(j)
+    }
+    arr.append(arr2)
+}
+
+func check(r : Int, c:Int , num: Int) -> Bool{
+    let start = arr[r][c]
+    for i in r..<(r + num) {
+        for j in c..<(c + num) {
+            if start != arr[i][j]{
+                return false
+            }
+        }
+    }
+    return true
+}
+func divide(r : Int, c:Int , num: Int) {
+    // 1
+    if check(r: r, c: c, num: num){
+        result.append(contentsOf: String(arr[r][c]))
+        return
+    }
+    
+    // 2
+    let size = num / 2
+    result.append(contentsOf: "(")
+    for i in 0..<2 {
+        for j in 0..<2{
+            divide(r: r + size * i, c: c + size * j, num: size)
+        }
+    }
+    result.append(contentsOf: ")")
+    
+}
+divide(r: 0, c: 0, num: input1)
+print(result)
+
