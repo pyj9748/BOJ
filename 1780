@@ -1,0 +1,49 @@
+//
+//  main.swift
+//  CodingTest
+//
+//  Created by young june Park on 2022/03/03.
+//
+ 
+import Foundation
+
+var arr : [[Int]] = []
+var result : [Int] = [0,0,0]
+var input1 = Int(readLine()!)!
+for i in 0..<input1 {
+    arr.append(readLine()!.split(separator: " ").map({
+        Int($0)!
+    }))
+}
+func check(row : Int , col : Int , num : Int) -> Bool{
+    let start = arr[row][col]
+    for i in row..<row + num {
+        for j in col..<col + num {
+            if start != arr[i][j]{
+                return false
+            }
+                
+        }
+    }
+    return true
+}
+
+func divide(row : Int , col : Int , num:Int){
+   // 1
+    
+    if check(row: row, col: col, num: num) {
+        result[arr[row][col] + 1] += 1
+    }
+    else {
+        var size = num / 3
+        for i in 0..<3 {
+            for j in 0..<3 {
+                divide(row: row + size * i, col: col + size * j, num: size)
+            }
+        }
+    }
+    
+}
+divide(row: 0, col: 0, num: input1)
+print ("\(result[0])\n\(result[1])\n\(result[2])")
+
