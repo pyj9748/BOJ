@@ -1,0 +1,31 @@
+//
+//  main.swift
+//  CodingTest
+//
+//  Created by young june Park on 2022/03/03.
+//
+ 
+import Foundation
+
+var input = readLine()!.split(separator: " ").map({
+    Int($0)!
+})
+
+var ans = 1
+// 재귀 방법?
+func POW(a:Int , b: Int , c: Int) -> Int{
+    // base case
+    if (b == 1) {
+        return a % c
+    }
+    var val = POW(a: a,b: b/2,c: c)
+    val = val * val % c
+    if (b % 2 == 0){
+        return val
+    }
+    return val * a % c
+    
+}
+ans = POW(a: input[0], b: input[1], c: input[2])
+print(ans)
+
