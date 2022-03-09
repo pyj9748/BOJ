@@ -1,0 +1,40 @@
+//
+//  main.swift
+//  CodingTest
+//
+//  Created by young june Park on 2022/03/03.
+//
+ 
+import Foundation
+var result = 0
+let input = readLine()!.split(separator: " ").map({
+    Int($0)!
+})
+var arr = [[Int]](repeating: Array(repeating: 0, count: Int(pow(2.0, Double(input[0])))), count: Int(pow(2.0, Double(input[0]))))
+
+func divide(r : Int , c: Int , num:Int){
+    if num == 1 {
+        return
+    }
+    let size = num / 2
+    if r < size && c < size {
+       // 1
+        result += 0
+    }
+    else if r < size && c >= size {
+       // 2
+        result += 1 * size * size
+    }
+    else if r >= size && c < size {
+        // 3
+        result += 2 * size * size
+    }
+    else{
+        //4
+        result += 3 * size * size
+    }
+    divide(r: r % size, c: c % size, num: size)
+}
+
+divide(r: input[1] , c : input[2] , num : Int(pow(2.0, Double(input[0]))))
+print (result)
