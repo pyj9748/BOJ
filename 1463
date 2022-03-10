@@ -1,0 +1,43 @@
+//
+//  main.swift
+//  CodingTest
+//
+//  Created by young june Park on 2022/03/03.
+//
+ 
+import Foundation
+var dp = Array(repeating: -1, count: 1000001)
+dp[1] = 0
+dp[2] = 1
+var n = Int(readLine()!)!
+
+func one(n : Int) -> Int{
+   
+    // base case
+    if n == 1 {
+        return 0
+    }
+    if n == 2 {
+        return 1
+    }
+    
+    // 계산된적 있다 리턴
+    if dp[n] != -1 {
+        return dp[n]
+    }
+    // 계산된적 없다 저장 후 리턴
+    var result = one(n: n-1) + 1
+    
+    if (n % 3 == 0) {
+        result = min(result, one(n: n/3) + 1)
+        
+    }
+    if (n % 2 == 0 ){
+        result = min(result, one(n: n/2) + 1)
+    }
+    dp[n] = result
+    
+    return dp[n]
+}
+
+print(one(n:n))
