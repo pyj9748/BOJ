@@ -1,0 +1,28 @@
+//
+//  main.swift
+//  CodingTest
+//
+//  Created by young june Park on 2022/03/16.
+//
+ 
+import Foundation
+
+
+let N = Int(readLine()!)!
+var arr = [0]
+var arr1 = readLine()!.split(separator: " ").map({
+    Int($0)!
+})
+arr.append(contentsOf: arr1)
+
+var dp = Array(repeating: 0, count: 1003)
+
+for i in 1...N {
+    for j in 1...i{
+        dp[i] = max(dp[i-j] + arr[j],dp[i])
+    }
+    
+}
+
+
+print(dp[N])
