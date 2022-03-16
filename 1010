@@ -1,0 +1,44 @@
+//
+//  main.swift
+//  CodingTest
+//
+//  Created by young june Park on 2022/03/16.
+//
+ 
+import Foundation
+
+
+
+let T = Int(readLine()!)!
+
+for _ in 0..<T {
+    let input = readLine()!.split(separator: " ").map({
+        Int($0)!
+    })
+    var N = input[0]
+    var M = input[1]
+    var dp = Array(repeating: Array(repeating: 0, count: 31), count: 31)
+    
+    for i in 1...N {
+        for j in i...M{
+            
+            if i == 1 {
+                dp[i][j] = j
+                continue
+            }
+            
+            if i == j {
+                dp[i][j] = 1
+                continue
+            }
+            
+            dp[i][j] = (dp[i][j-1] * j) / (j-i)
+            
+        }
+    }
+    
+    
+    
+    
+    print(dp[N][M])
+}
