@@ -7,7 +7,7 @@
  
 import Foundation
 
-var name = "소프트웨어 공학 2017203022 박영준이 아닙니다--crash "
+var name = "소프트웨어 공학 2017203022 박영준 ----version 2"
 
 
 
