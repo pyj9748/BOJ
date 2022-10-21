@@ -1,0 +1,32 @@
+//
+//  main.swift
+//  practice
+//
+//  Created by young june Park on 2022/10/21.
+//
+
+import Foundation
+
+let n: Int = Int(readLine()!)!
+
+var answer = 0
+let a = (n % 5)
+let b = (n / 5)
+exchange()
+
+func exchange() {
+    if (a % 2) == 1 {
+        if n < 5 {
+            print(-1)
+            return
+        }
+        answer = (b - 1) + ((a + 5) / 2)
+    } else {
+        answer = b + (a / 2)
+    }
+    print(answer)
+}
+
+
+
+
