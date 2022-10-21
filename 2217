@@ -1,0 +1,27 @@
+//
+//  main.swift
+//  practice
+//
+//  Created by young june Park on 2022/10/21.
+//
+
+import Foundation
+
+let n: Int = Int(readLine()!)!
+
+var arr: [Int] = []
+var max = 0
+for _ in 0..<n {
+    let a: Int = Int(readLine()!)!
+    arr.append(a)
+}
+arr.sort()
+for i in 0..<arr.count {
+    let weight = (arr.count - i) * arr[i]
+    if weight > max {
+        max = weight
+    }
+}
+print(max)
+
+
