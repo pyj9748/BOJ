@@ -1,0 +1,30 @@
+//
+//  main.swift
+//  practice
+//
+//  Created by young june Park on 2022/10/21.
+//
+
+import Foundation
+
+let n: Int = Int(readLine()!)!
+
+var arr: [Int] = []
+var ans = 0
+for _ in 0..<n {
+    let a: Int = Int(readLine()!)!
+    arr.append(a)
+}
+arr.sort(by: {
+    $0 > $1
+})
+for i in 0..<arr.count {
+    let tip = arr[i] - i
+    if tip > 0 {
+        ans += tip
+    }
+    
+}
+print(ans)
+
+
