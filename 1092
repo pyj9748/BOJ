@@ -1,0 +1,60 @@
+//
+//  main.swift
+//  practice
+//
+//  Created by young june Park on 2022/10/21.
+//
+
+import Foundation
+var t = 0
+let n: Int = Int(readLine()!)!
+var crains = readLine()!.components(separatedBy:" ").map {
+        Int($0)!
+    }
+ 
+let k: Int = Int(readLine()!)!
+var boxes = readLine()!.components(separatedBy:" ").map {
+        Int($0)!
+    }
+crains.sort(by: {
+    $0 > $1
+})
+boxes.sort(by: {
+    $0 > $1
+})
+var moved = 0
+dosome()
+
+func dosome() {
+    if boxes[0] > crains[0] {
+        print(-1)
+        return
+    }
+    
+    while !boxes.isEmpty {
+        move()
+        t += 1
+        if moved == 0 {
+            print(-1)
+            return
+        }
+    }
+    print(t)
+}
+
+
+
+func move() {
+    for crain in crains {
+        for bindex in 0..<boxes.count {
+            if crain >= boxes[bindex] {
+                boxes.remove(at: bindex)
+                moved += 1
+                break
+            }
+        }
+    }
+    
+}
+
+
