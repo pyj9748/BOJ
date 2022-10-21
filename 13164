@@ -1,0 +1,35 @@
+//
+//  main.swift
+//  practice
+//
+//  Created by young june Park on 2022/10/21.
+//
+
+import Foundation
+
+let nums = readLine()!.components(separatedBy:" ").map{ Int($0)! }
+let n = nums[0]
+let k = nums[1]
+//var arr: [Int] = []
+
+
+let arr = readLine()!.components(separatedBy:" ").map{ Int($0)! }
+    
+
+var diffs: [Int] = []
+for i in 1..<arr.count{
+    diffs.append(arr[i] - arr[i-1])
+}
+
+diffs.sort()
+
+let sum = diffs.reduce(0,+)
+
+var a = 0
+for i in (diffs.count - (k - 1))..<diffs.count {
+    a += diffs[i]
+}
+print(sum - a)
+
+
+
