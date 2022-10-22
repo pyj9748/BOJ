@@ -1,0 +1,56 @@
+//
+//  main.swift
+//  practice
+//
+//  Created by young june Park on 2022/10/21.
+//
+
+import Foundation
+let e = readLine()!.components(separatedBy:" ").map {
+        Int($0)!
+}
+let len = e[0]
+let k = e[1]
+var num = readLine()!
+var nums: [Int] = []
+for c in num {
+    nums.append(Int(String(c))!)
+}
+var stack: [Int] = []
+var cnt = 0
+var index = 0
+while cnt < k {
+    if index == nums.count {
+        break
+    }
+    push()
+    index += 1
+}
+func push() {
+    while cnt < k {
+        if let last = stack.last {
+            if last < nums[index] {
+                stack.removeLast()
+                cnt += 1
+            } else {
+                stack.append(nums[index])
+                break
+            }
+        } else {
+            stack.append(nums[index])
+            break
+        }
+    }
+    
+}
+var extra = ""
+for i in index-1..<num.count {
+    extra += String(nums[i])
+}
+
+var answer = stack.map{String($0)}.joined() + extra
+if answer.count > len - k {
+    answer = String(answer[answer.startIndex...answer.index(answer.startIndex, offsetBy: len - k - 1)])
+}
+print(answer)
+
