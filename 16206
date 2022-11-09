@@ -1,0 +1,75 @@
+//
+//  main.swift
+//  practice
+//
+//  Created by young june Park on 2022/10/21.
+//
+
+import Foundation
+let a = readLine()!.split(separator:" ").map {
+    Int($0)!
+}
+var arr = readLine()!.split(separator:" ").map {
+    Int($0)!
+}.sorted {
+    if $0 % 10 == 0 && $1 % 10 == 0 {
+        return $0 < $1
+    } else if $0 % 10 == 0 && $1 % 10 != 0 {
+        return true
+    } else if $0 % 10 != 0 && $1 % 10 == 0 {
+        return false
+    } else {
+        return $0 < $1
+    }
+    
+}
+
+
+let n = a[0]
+var m = a[1]
+var answer = 0
+var index = 0
+var tenCount = 0
+
+func testCase() {
+
+    
+    while m > 0 && index < n {
+        cut()
+    }
+    print(answer)
+}
+
+
+func cut() {
+    if arr[index] == 10 {
+        answer += 1
+        index += 1
+        return
+    }
+    
+    if arr[index] % 10 == 0 {
+        answer += arr[index] / 10
+        m -= (arr[index] / 10) - 1
+        if m < 0 {
+            answer -= (abs(m) + 1)
+        }
+        index += 1
+        return
+    } else {
+        answer += arr[index] / 10
+        m -= (arr[index] / 10)
+       
+        if m < 0 {
+          
+            answer -= (abs(m))
+           
+        }
+        index += 1
+        return
+    }
+    
+}
+
+
+testCase()
