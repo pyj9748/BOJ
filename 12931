@@ -1,0 +1,70 @@
+//
+//  main.swift
+//  practice
+//
+//  Created by young june Park on 2022/10/21.
+//
+
+import Foundation
+let a = readLine()!.split(separator:" ").map {
+    Int($0)!
+}
+var arr = readLine()!.split(separator:" ").map {
+    Int($0)!
+}
+
+var answer = 0
+
+func testCase() {
+    while makeDict() != [ 0 : a[0] ] {
+        if isAllTwo() {
+            divide()
+        } else {
+            minus()
+        }
+    }
+   
+    
+    print(answer)
+}
+
+func isAllTwo() -> Bool {
+    for i in 0..<arr.count {
+        if arr[i] % 2 == 1 {
+            return false
+        }
+    }
+    return true
+}
+
+func divide() {
+    arr = arr.map {
+        $0 / 2
+    }
+    answer += 1
+}
+
+func minus() {
+    for i in 0..<arr.count {
+        if arr[i] % 2 == 1 {
+            arr[i] -= 1
+            answer += 1
+            return
+        }
+    }
+    
+}
+
+func makeDict() -> [Int: Int] {
+    var dict: [Int: Int] = [:]
+    arr.forEach {
+        if let a = dict[$0] {
+            dict[$0] = a + 1
+        } else {
+            dict[$0] = 1
+        }
+    }
+    return dict
+}
+
+testCase()
