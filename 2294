@@ -1,0 +1,56 @@
+//
+//  main.swift
+//  practice
+//
+//  Created by young june Park on 2022/10/21.
+//
+
+import Foundation
+let a = readLine()!.split(separator:" ").map {
+    Int($0)!
+}
+
+let n = a[0]
+let k = a[1]
+var arr: [Int] = []
+
+var dp: [Int] = Array(repeating: 0, count: k + 1)
+dp[0] = 0
+for _ in 0..<n {
+    let input = Int(readLine()!)!
+    arr.append(input)
+}
+
+var answer = 0
+
+
+    
+func testCase() {
+    
+    for i in 1...k {
+        if arr.contains(where: {
+            $0 == i
+        }) {
+            dp[i] = 1
+            continue
+        }
+        var min = 10001
+        for j in 0..<arr.count {
+            if i - arr[j] > 0 {
+                if min > dp[i - arr[j]] {
+                    min = dp[i - arr[j]]
+                }
+            }
+        }
+        dp[i] = min + 1
+    }
+    if dp[k] == 10002 {
+        print(-1)
+        return
+    }
+    print(dp[k])
+    
+}
+
+
+testCase()
