@@ -1,0 +1,49 @@
+//
+//  main.swift
+//  practice
+//
+//  Created by young june Park on 2022/10/21.
+//
+
+import Foundation
+
+let N = Int(readLine()!)!
+var arrs: [[Int]] = []
+
+var dp: [Int] = Array(repeating: 1, count: N)
+dp[0] = 0
+for _ in 0..<N {
+    let input = readLine()!.split(separator:" ").map {
+        Int($0)!
+    }
+    arrs.append(input)
+}
+    
+func testCase() {
+    arrs = arrs.sorted {
+        $0[0] < $1[0]
+    }
+    for i in 0..<N {
+        for j in 0..<i {
+            if arrs[j][1] < arrs[i][1] {
+                dp[i] = max(dp[i], dp[j] + 1)
+            }
+        }
+    }
+    let a = N - dp.max()!
+    dp = Array(repeating: 1, count: N)
+    arrs = arrs.sorted {
+        $0[1] < $1[1]
+    }
+    for i in 0..<N {
+        for j in 0..<i {
+            if arrs[j][0] < arrs[i][0] {
+                dp[i] = max(dp[i], dp[j] + 1)
+            }
+        }
+    }
+    let b = N - dp.max()!
+    print(min(a,b))
+}
+
+testCase()
