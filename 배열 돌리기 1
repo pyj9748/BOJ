@@ -1,0 +1,82 @@
+//
+//  main.swift
+//  practice
+//
+//  Created by young june Park on 2022/10/21.
+//
+
+import Foundation
+var N: Int
+var M: Int
+var R: Int
+var arr: [[Int]] = []
+let str = readLine()!
+let input: [Int] = str.split(separator: " ").map { Int(String($0))! }
+N = input[0]
+M = input[1]
+R = input[2]
+for _ in 0..<N {
+    let str = readLine()!
+    let a: [Int] = str.split(separator: " ").map { Int(String($0))! }
+    arr.append(a)
+}
+func testcase() {
+    let T = min(N,M) / 2
+    for i in 0..<T {
+        var line: [Int] = []
+        // 위
+        for j in i..<((M - 1) - i) {
+            line.append(arr[i][j])
+        }
+        // 오른쪽
+        for j in i..<((N - 1) - i) {
+            line.append(arr[j][(M - 1) - i])
+        }
+        // 아래
+        for j in stride (from:((M - 1) - i), through: i + 1, by: -1){
+            line.append(arr[(N - 1) - i][j])
+        }
+        // 왼쪽
+        for j in stride (from:((N - 1) - i), through: i + 1, by: -1){
+            line.append(arr[j][i])
+        }
+        let r = R % line.count
+        let count = 0
+        var newLine: [Int] = []
+        for index in r..<line.count {
+            newLine.append(line[index])
+        }
+        for index in 0..<r {
+            newLine.append(line[index])
+        }
+        var cur = 0
+        // 위
+        for j in i..<((M - 1) - i) {
+            arr[i][j] = newLine[cur]
+            cur += 1
+        }
+        // 오른쪽
+        for j in i..<((N - 1) - i) {
+            arr[j][(M - 1) - i] = newLine[cur]
+            cur += 1
+        }
+        // 아래
+        for j in stride (from:((M - 1) - i), through: i + 1, by: -1){
+            arr[(N - 1) - i][j] = newLine[cur]
+            cur += 1
+        }
+        // 왼쪽
+        for j in stride (from:((N - 1) - i), through: i + 1, by: -1){
+            arr[j][i] = newLine[cur]
+            cur += 1
+        }
+    }
+    for i in 0..<N {
+        print(arr[i].map {String($0)}.joined(separator: " "))
+    }
+    
+}
+
+
+testcase()
+
