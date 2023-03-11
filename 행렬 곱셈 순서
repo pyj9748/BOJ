@@ -1,0 +1,37 @@
+import Foundation
+func solution() {
+    let n = Int(readLine()!)!
+    var p = Array(repeating: 0, count: n + 2)
+    for i in 1 ... n {
+        let arr = readLine()!.split(separator: " ").map { String($0) }
+        p[i] = Int(arr.first!)!
+        if i == n {
+            p[i + 1] = Int(arr.last!)!
+        }
+    }
+    //
+    if n == 1 {
+        print(p[1] * p[2])
+        return
+    }
+        
+    //
+    var dp = Array(repeating: Array(repeating: Int.max, count: n + 1), count: n + 1)
+    for i in 1 ... n {
+        dp[i][i] = 0
+    }
+    for d in 2 ... n {
+        for i in 1 ... ((n - d) + 1) {
+            let j = (d + i) - 1
+            // print("--", i, j)
+            for k in i ..< j {
+                // print(i,k, k+1, j)
+                dp[i][j] = min(dp[i][j], dp[i][k] + dp[k + 1][j] + (p[i] * p[k + 1] * p[j + 1]))
+            }
+        }
+    }
+
+    print(dp[1][n])
+}
+
+solution()
